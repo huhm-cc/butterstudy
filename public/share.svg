@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="Georgia, 'Noto Serif TC', serif">
+  <rect width="1200" height="630" fill="#FFFAF0"/>
+  <circle cx="985" cy="150" r="240" fill="#F6C453" opacity="0.55"/>
+  <circle cx="1080" cy="520" r="130" fill="#C55221" opacity="0.18"/>
+  <rect x="100" y="140" width="52" height="52" rx="16" fill="#F6C453"/>
+  <path d="M114 154h24l-6 16h-24l6-16Z" fill="#FFF8E6"/>
+  <text x="100" y="290" font-size="96" font-weight="700" fill="#241C10">Butter<tspan fill="#B8790C">Study</tspan></text>
+  <text x="100" y="372" font-size="40" font-family="system-ui, 'Noto Sans TC', sans-serif" fill="#5C4A2E">上傳一篇文章,AI 幫你畫重點</text>
+  <text x="100" y="440" font-size="26" font-family="system-ui, 'Noto Sans TC', sans-serif" fill="#8A755A">章節 · 重點 · 結論 · 問 AI · 出題練習</text>
+  <rect x="100" y="500" width="220" height="6" rx="3" fill="#C55221"/>
+</svg>

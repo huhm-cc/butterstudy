@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "buildCommand": "next build",
+  "functions": {
+    "app/api/ai/**": { "maxDuration": 60 },
+    "app/api/study/**": { "maxDuration": 30 },
+    "app/api/overview": { "maxDuration": 60 }
+  }
+}

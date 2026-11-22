@@ -1,0 +1,36 @@
+{
+  "name": "butterstudy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ButterStudy — 幫你畫重點的AI學習平台:上傳文章,自動整理章節與重點,問AI問題,出題練習。",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build --turbopack",
+    "start": "next start",
+    "lint": "next lint",
+    "postinstall": "node scripts/copy-pdf-worker.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/fraunces": "^5.2.5",
+    "@fontsource-variable/inter": "^5.2.5",
+    "@fontsource/jetbrains-mono": "^5.2.5",
+    "@fontsource/noto-sans-tc": "^5.1.1",
+    "@fontsource/noto-serif-tc": "^5.1.1",
+    "@libsql/client": "^0.15.4",
+    "jose": "^6.0.11",
+    "motion": "^12.23.12",
+    "next": "^15.5.0",
+    "pdfjs-dist": "^5.3.93",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.7",
+    "@types/node": "^22.15.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "sharp": "^0.35.5",
+    "tailwindcss": "^4.1.7",
+    "typescript": "^5.8.3"
+  }
+}

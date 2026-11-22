@@ -1,0 +1,187 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------
+   ButterStudy 設計系統 — 暖色編輯風(奶油底 + 琥珀品牌色 + 墨色)
+   Mode: Persuade(landing)/ Operate(學習app)/ Read(統計頁)
+   --------------------------------------------------------------- */
+
+@theme {
+  /* 色彩 */
+  --color-cream: #fffaf0;
+  --color-cream-2: #fdf3e3;
+  --color-butter: #f6c453;
+  --color-butter-soft: #fbe6b4;
+  --color-amber: #d99a1f;
+  --color-amber-deep: #b8790c;
+  --color-burnt: #c55221;
+  --color-ink: #241c10;
+  --color-ink-2: #5c4a2e;
+  --color-ink-3: #8a755a;
+  --color-line: #ead9bd;
+  --color-line-strong: #d9c19a;
+  --color-surface: #ffffff;
+  --color-success: #2e7d4f;
+  --color-danger: #c0392b;
+
+  /* 字體 */
+  --font-sans:
+    "Inter", "Noto Sans TC", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-serif:
+    "Fraunces", "Noto Serif TC", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* 圓角 */
+  --radius-card: 14px;
+
+  /* 陰影 */
+  --shadow-soft: 0 1px 2px rgb(36 28 16 / 0.05), 0 8px 24px -12px rgb(36 28 16 / 0.12);
+  --shadow-lift: 0 2px 4px rgb(36 28 16 / 0.06), 0 16px 40px -16px rgb(36 28 16 / 0.18);
+}
+
+/* 字型載入(本地 npm 套件,無需 build 時連線 Google) */
+@import "@fontsource-variable/inter/index.css";
+@import "@fontsource-variable/fraunces/index.css";
+@import "@fontsource/noto-sans-tc/400.css";
+@import "@fontsource/noto-sans-tc/500.css";
+@import "@fontsource/noto-sans-tc/700.css";
+@import "@fontsource/noto-serif-tc/500.css";
+@import "@fontsource/noto-serif-tc/700.css";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/600.css";
+
+/* 注意:@import 必須位於頂部;上面 @import "tailwindcss" 後的所有 import
+   已集中在這裡,Tailwind v4 允許在 css 頂部並列。 */
+
+:root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  color-scheme: light;
+}
+
+* {
+  border-color: var(--color-line);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-butter-soft);
+  color: var(--color-ink);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+}
+
+.font-mono, .num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* 焦點可見(鍵盤優先) */
+:focus-visible {
+  outline: 2px solid var(--color-amber-deep);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* 跳至內容連結 */
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -48px;
+  z-index: 100;
+  padding: 10px 16px;
+  background: var(--color-ink);
+  color: var(--color-cream);
+  border-radius: 8px;
+  transition: top 160ms var(--ease-out);
+}
+.skip-link:focus {
+  top: 12px;
+}
+
+/* 文章內文排版(Read mode) */
+.prose-study {
+  font-size: 17px;
+  line-height: 1.85;
+  color: var(--color-ink);
+}
+.prose-study p {
+  margin: 0 0 1.15em;
+}
+.prose-study h2 {
+  font-size: 24px;
+  margin: 2em 0 0.6em;
+  padding-top: 0.4em;
+  border-top: 1px solid var(--color-line);
+}
+.prose-study h3 {
+  font-size: 19px;
+  margin: 1.6em 0 0.5em;
+}
+.prose-study ul, .prose-study ol {
+  margin: 0 0 1.15em;
+  padding-left: 1.4em;
+}
+.prose-study li {
+  margin: 0.3em 0;
+}
+.prose-study blockquote {
+  margin: 1.2em 0;
+  padding: 0.2em 0 0.2em 1.1em;
+  border-left: 3px solid var(--color-butter);
+  color: var(--color-ink-2);
+}
+.prose-study code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: var(--color-cream-2);
+  border: 1px solid var(--color-line);
+  border-radius: 6px;
+  padding: 0.1em 0.35em;
+}
+.prose-study pre {
+  font-family: var(--font-mono);
+  background: var(--color-ink);
+  color: var(--color-cream-2);
+  border-radius: 12px;
+  padding: 16px 18px;
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.prose-study pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
+
+/* 動畫偏好 */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
