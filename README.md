@@ -4,7 +4,7 @@
 
 ButterStudy 是一個 AI 學習平台:上傳 **PDF / TXT / Markdown / 圖片**,網站自動擷取文字、整理章節與重點,你可以就文章內容問 AI,也能讓 AI 依據文章出練習題。學習進度、正確率與歷史紀錄都存在 [Turso](https://turso.tech),像 Duolingo 一樣追著你走。
 
-- 線上:**https://butterstudy.vercel.app**(部署後替換為你的網域)
+- 線上:**https://butterstudy-five.vercel.app**(已部署;Vercel 專案 `butterstudy`)
 - AI 模型:`nvidia/nemotron-3.5-super-vl-120b-a12b`(NVIDIA NIM,OpenAI 兼容)
 - 授權:MIT
 
