@@ -47,8 +47,19 @@ function authHeaders(): HeadersInit {
   };
 }
 
-/** 非串流:取純文字回覆。 */
+/** 非串流:取純文字回覆。json 模式若不支援會自動降級重试。 */
 export async function chatOnce(opts: ChatOptions): Promise<string> {
+  try {
+    return await postOnce(opts, Boolean(opts.json));
+  } catch (err) {
+    if (opts.json && err instanceof NvidiaError && (err.status === 400 || err.status === 422)) {
+      return postOnce(opts, false);
+    }
+    throw err;
+  }
+}
+
+async function postOnce(opts: ChatOptions, jsonMode: boolean): Promise<string> {
   const body: Record<string, unknown> = {
     model: NVIDIA_MODEL,
     messages: opts.messages,
@@ -56,8 +67,10 @@ export async function chatOnce(opts: ChatOptions): Promise<string> {
     max_tokens: opts.maxTokens ?? 2048,
     stream: false,
     top_p: 0.9,
+    reasoning_effort: "none",
+    chat_template_kwargs: { enable_thinking: false },
   };
-  if (opts.json) body.response_format = { type: "json_object" };
+  if (jsonMode) body.response_format = { type: "json_object" };
   const res = await fetch(`${NVIDIA_BASE_URL}/chat/completions`, {
     method: "POST",
     headers: authHeaders(),
@@ -76,6 +89,18 @@ export async function chatOnce(opts: ChatOptions): Promise<string> {
 
 /** 串流:回傳 SSE 串流給前端。 */
 export async function chatStream(opts: ChatOptions): Promise<Response> {
+  try {
+    return await streamOnce(opts, true);
+  } catch (err) {
+    if (err instanceof NvidiaError && (err.status === 400 || err.status === 422)) {
+      // 模型不支援關閉思考的參數時,退回一般串流
+      return streamOnce(opts, false);
+    }
+    throw err;
+  }
+}
+
+async function streamOnce(opts: ChatOptions, disableThinking: boolean): Promise<Response> {
   const body: Record<string, unknown> = {
     model: NVIDIA_MODEL,
     messages: opts.messages,
@@ -84,6 +109,11 @@ export async function chatStream(opts: ChatOptions): Promise<Response> {
     stream: true,
     top_p: 0.9,
   };
+  if (disableThinking) {
+    // nemotron 3.5 推理模型:直接出答案,不先吐 reasoning_content
+    body.reasoning_effort = "none";
+    body.chat_template_kwargs = { enable_thinking: false };
+  }
   const res = await fetch(`${NVIDIA_BASE_URL}/chat/completions`, {
     method: "POST",
     headers: authHeaders(),

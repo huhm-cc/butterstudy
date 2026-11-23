@@ -13,3 +13,5 @@ data/
 .DS_Store
 shots/
 .taste-skill/
+.vercel
+.env*

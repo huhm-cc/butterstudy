@@ -5,7 +5,7 @@
   "description": "ButterStudy — 幫你畫重點的AI學習平台:上傳文章,自動整理章節與重點,問AI問題,出題練習。",
   "scripts": {
     "dev": "next dev",
-    "build": "next build --turbopack",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "postinstall": "node scripts/copy-pdf-worker.mjs"

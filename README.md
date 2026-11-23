@@ -66,5 +66,7 @@ PDF 文字擷取在瀏覽器端完成(pdfjs);圖片交給 NVIDIA VL 模型辨識
 
 ## 開發提示
 
-- `npm run build` 檢查型別與建置;`npm run dev` 本地跑。
+- `npm run dev` 本地跑;`npm run build` 檢查型別與建置(部署到 Vercel 時自動執行)。
 - 圖片上限約 4MB(base64 後,配合 Vercel Function 限制),上傳前已在瀏覽器壓縮到 1600px。
+- 本機 `npm run build` 若遇到 `EISDIR ... readlink` 或 Turbopack 解析 `@libsql` 失敗,是 Windows
+  虛擬/網路磁碟的 readlink 行為與一般磁碟不同所致;Vercel(Linux)建置不受影響,以 Vercel 的建置結果為準。

@@ -1,3 +1,5 @@
+import { mkdirSync } from "node:fs";
+import { dirname, resolve } from "node:path";
 import { createClient, type Client } from "@libsql/client";
 
 /**
@@ -7,10 +9,17 @@ import { createClient, type Client } from "@libsql/client";
 let client: Client | null = null;
 let schemaReady: Promise<void> | null = null;
 
+function ensureLocalDir(url: string) {
+  if (!url.startsWith("file:")) return;
+  const filePath = resolve(url.slice("file:".length).split("?")[0]);
+  mkdirSync(dirname(filePath), { recursive: true });
+}
+
 export function getDb(): Client {
   if (client) return client;
   const url = process.env.TURSO_DATABASE_URL?.trim() || "file:./data/local.db";
   const authToken = process.env.TURSO_AUTH_TOKEN?.trim() || undefined;
+  ensureLocalDir(url);
   client = createClient({ url, authToken });
   return client;
 }

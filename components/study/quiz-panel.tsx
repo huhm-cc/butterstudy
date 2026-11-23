@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import { cx } from "@/lib/cx";
 import { buttonClass } from "@/components/ui/button";
@@ -41,6 +41,7 @@ export function QuizPanel({
     setQuiz(null);
     setIndex(0);
     setScored([]);
+    recordedRef.current = false;
     try {
       const res = await fetch("/api/ai/quiz", {
         method: "POST",
@@ -279,11 +280,7 @@ export function QuizPanel({
 
       <div className="mt-4 flex items-center justify-between border-t border-line pt-3 text-[12px] text-ink-3">
         <span>答對 {scored.filter((s) => s.correct).length}・已答 {scored.length}</span>
-        {index === quiz.questions.length - 1 && scored.length > 0 ? (
-          <button onClick={finishQuiz} className="font-medium text-amber-deep underline underline-offset-4">
-            交卷
-          </button>
-        ) : null}
+        <span>答完自動交卷</span>
       </div>
     </Shell>
   );
