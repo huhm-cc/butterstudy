@@ -31,7 +31,7 @@ export function SiteFooter() {
           title="關於"
           links={[
             { href: "/stats", label: "網站數據" },
-            { href: "https://github.com", label: "GitHub(原始碼)" },
+            { href: "https://github.com/huhm-cc/butterstudy", label: "GitHub(原始碼)" },
             { href: "https://build.nvidia.com", label: "NVIDIA NIM" },
           ]}
         />
